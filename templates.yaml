@@ -8,5 +8,4 @@ spec:
   type: url
   targets:
     - templates/gitlab/sample-software-template/template.yaml
-    - templates/gitlab/python-backend/template.yaml
-
+    #- templates/gitlab/python-backend/template.yaml
