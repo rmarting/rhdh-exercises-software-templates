@@ -2,23 +2,25 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage-docs
+  name: ${{ values.name }}
   description: |
     Backstage is an open-source developer portal that puts the developer experience first.
+    ${{ values.description }}
+  tags:
+    - rhdh-exercises
+    - sample
   links:
     - title: Website
-      url: http://backstage.io
+      url: https://developers.redhat.com/rhdh/overview
     - title: Documentation
-      url: https://backstage.io/docs
-    - title: Storybook
-      url: https://backstage.io/storybook
-    - title: Discord Chat
-      url: https://discord.com/invite/EBHEGzX
+      url: https://access.redhat.com/documentation/en-us/red_hat_developer_hub/
   annotations:
-    github.com/project-slug: backstage/backstage
+    gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
-    lighthouse.com/website-url: https://backstage.io
 spec:
-  type: library
-  owner: CNCF
+  type: service
+  owner: ${{ values.owner }}
   lifecycle: experimental
+  system: sample-system
+  providesApis:
+    - ${{ values.name }}

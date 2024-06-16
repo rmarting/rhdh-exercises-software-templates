@@ -1,3 +1,3 @@
-# ${{ values.Name }} Sample Scaffold 
+# ${{ values.name }} Sample Scaffold 
 
 ${{ values.description }}
