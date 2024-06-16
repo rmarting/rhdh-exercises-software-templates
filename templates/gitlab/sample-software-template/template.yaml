@@ -8,6 +8,8 @@ metadata:
   tags:
     - sample
     - gitlab
+    - rhdh-exercises
+    - workshop
 spec:
   owner: backstage/techdocs-core
   type: service
