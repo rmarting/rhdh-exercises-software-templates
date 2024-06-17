@@ -27,7 +27,7 @@ spec:
         description:
           title: Description
           type: string
-          description: Help others understand what this component is for            
+          description: Help others understand what this component is for
         owner:
           title: Owner
           type: string
@@ -60,6 +60,7 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
+          repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
 
     #- id: fetch-docs
     #  name: Fetch Docs
