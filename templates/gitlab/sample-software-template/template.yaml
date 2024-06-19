@@ -18,20 +18,24 @@ spec:
     - title: Provide information about the new component
       required:
         - name
+        - description
         - owner
       properties:
         name:
           title: Name
           type: string
           description: Unique name of the component
+          ui:help: Provide an unique name to identify the component
         description:
           title: Description
           type: string
           description: Help others understand what this component is for
+          ui:help: Short description of this new component
         owner:
           title: Owner
           type: string
           description: Owner of the component
+          ui:help: Who is the owner of this new component?
           ui:field: EntityPicker
           ui:options:
             catalogFilter:
@@ -46,6 +50,7 @@ spec:
           title: Repository Location
           type: string
           description: Full url of the GitLab server to publish the content of this component
+          ui:help: Full url of the GitLab server to publish the content of this component
           #ui:field: RepoUrlPicker
           #ui:options:
           #  rows: 5

@@ -10,9 +10,9 @@ metadata:
     - rhdh-exercises
     - sample
   links:
-    - title: Website
+    - title: Red Hat Developer Hub Website
       url: https://developers.redhat.com/rhdh/overview
-    - title: Documentation
+    - title: Red Hat Developer Hub Documentation
       url: https://access.redhat.com/documentation/en-us/red_hat_developer_hub/
   annotations:
     gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
