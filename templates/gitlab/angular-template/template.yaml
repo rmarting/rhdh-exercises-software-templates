@@ -1,0 +1,88 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: angular-app-template-gitlab
+  title: Angular App Template for GitLab
+  description: Create a new CRA website project
+  tags:
+    - angular
+    - gitlab
+    - rhdh-adventure
+spec:
+  owner: rmarting@redhat.com
+  type: website
+  parameters:
+    - title: Provide some simple information
+      required:
+        - component_id
+        - owner
+      properties:
+        component_id:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:field: EntityNamePicker
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this website is for.
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: EntityNamePicker
+          #ui:field: OwnerPicker
+          #ui:options:
+          #  allowedKinds:
+          #    - Group
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          default: 'gitlab.com'
+          ui:field: EntityNamePicker
+          #ui:field: RepoUrlPicker
+          #ui:options:
+          #  allowedHosts:
+          #    - github.com
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          description:  ${{ parameters.description }}
+          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          owner: ${{ parameters.owner }}
+          host: ${{ parameters.repo.host }}
+          destination_own: ${{ parameters.repo.owner }}
+          name: ${{ parameters.name }}
+    - id: publish
+      name: Publishing to the GitLab Repository
+      action: publish:gitlab
+      input:
+        #allowedHosts: ['gitlab.com']
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
+        repoVisibility: public
+        defaultBranch: main
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
