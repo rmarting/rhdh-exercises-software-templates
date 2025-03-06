@@ -3,12 +3,12 @@ kind: Component
 metadata:
   name: ${{ values.component_id | dump }}
   {%- if values.description %}
-  description: ${{values.description | dump}}
+  description: ${{ values.description | dump }}
   {%- endif %}
   annotations:
     backstage.io/techdocs-ref: dir:.
   links:
-    - url: https://workspaces.openshift.com/#${{ values.host }}/${{ values.owner }}/${{ values.component_id }}
+    - url: https://workspaces.openshift.com/#https://${{ values.repoUrl }}
       title: OpenShift Dev Spaces (VS Code)
       icon: web
 spec:

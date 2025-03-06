@@ -5,6 +5,7 @@ metadata:
   title: Angular App Template for GitLab
   description: Create a new CRA website project
   tags:
+    - recommended
     - angular
     - gitlab
     - rhdh-adventure
@@ -59,7 +60,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description:  ${{ parameters.description }}
-          host: ${{ parameters.repoUrl }}
+          repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
           owner: ${{ parameters.owner }}
     - id: publish
       name: Publishing to the GitLab Repository
