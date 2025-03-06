@@ -58,9 +58,10 @@ spec:
       input:
         url: ./skeleton
         values:
+          name: ${{ parameters.component_id }}
           component_id: ${{ parameters.component_id }}
           description:  ${{ parameters.description }}
-          repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
+          repo_url: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
           owner: ${{ parameters.owner }}
     - id: publish
       name: Publishing to the GitLab Repository
