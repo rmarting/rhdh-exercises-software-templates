@@ -8,7 +8,7 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
   links:
-    - url: https://workspaces.openshift.com/#https://${{ values.repoUrl }}
+    - url: https://workspaces.openshift.com/#https://${{ values.repo_url }}
       title: OpenShift Dev Spaces (VS Code)
       icon: web
 spec:
