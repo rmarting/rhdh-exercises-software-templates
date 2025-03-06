@@ -15,7 +15,7 @@ metadata:
     - title: Red Hat Developer Hub Documentation
       url: https://access.redhat.com/documentation/en-us/red_hat_developer_hub/
   annotations:
-    gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
+    gitlab.com/project-slug: ${{ values.owner }}/${{ values.repoName }}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: service
