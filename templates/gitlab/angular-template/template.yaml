@@ -62,14 +62,13 @@ spec:
           owner: ${{ parameters.owner }}
           host: ${{ parameters.repo.host }}
           destination_own: ${{ parameters.repo.owner }}
-          name: ${{ parameters.name }}
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab
       input:
         #allowedHosts: ['gitlab.com']
         description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
         repoVisibility: public
         defaultBranch: main
     - id: register
