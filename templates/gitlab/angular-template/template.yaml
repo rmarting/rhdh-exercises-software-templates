@@ -42,6 +42,7 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
+          description: Base url of the GitLab server (not include protocol such as https:// or ssh://)
           default: 'gitlab.com'
           ui:field: EntityNamePicker
           #ui:field: RepoUrlPicker
@@ -58,10 +59,8 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description:  ${{ parameters.description }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          host: ${{ parameters.repoUrl }}
           owner: ${{ parameters.owner }}
-          host: ${{ parameters.repo.host }}
-          destination_own: ${{ parameters.repo.owner }}
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab

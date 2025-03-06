@@ -1,6 +1,6 @@
 # ${{ values.name }}
 
-[![Open](https://img.shields.io/static/v1?label=open%20in&message=developer%20sandbox&logo=eclipseche&color=FDB940&labelColor=525C86)](https://workspaces.openshift.com/#${{ values.destination }}/${{ values.owner }}/${{ values.component_id }})
+[![Open](https://img.shields.io/static/v1?label=open%20in&message=developer%20sandbox&logo=eclipseche&color=FDB940&labelColor=525C86)](https://workspaces.openshift.com/#${{ values.host }}/${{ values.owner }}/${{ values.component_id }})
 
 ${{ values.description }}
 
