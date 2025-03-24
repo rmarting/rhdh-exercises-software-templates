@@ -52,11 +52,12 @@ spec:
         repoUrl:
           title: Repository Location
           type: string
-          description: Full url of the GitLab server to publish the content of this component
-          ui:help: Full url of the GitLab server to publish the content of this component
+          description: Base url of the GitLab server (not include protocol such as https:// or ssh://)
+          ui:help: Base url of the GitLab server (not include protocol such as https:// or ssh://)
           #ui:field: RepoUrlPicker
           #ui:options:
           #  rows: 5
+
   # here's the steps that are executed in series in the scaffolder backend
   steps:
     - id: fetch-base
@@ -67,8 +68,8 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
-          owner: ${{ parameters.owner | parseEntityRef | pick('name')  }}
-          repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name')  }}&repo=${{ parameters.name }}
+          owner: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.name }}
 
     - id: publish
       name: Publishing to the GitLab Repository

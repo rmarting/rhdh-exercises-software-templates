@@ -8,10 +8,11 @@ metadata:
     - recommended
     - angular
     - gitlab
-    - rhdh-adventure
+    - rhdh-exercises
 spec:
-  owner: rmarting@redhat.com
+  owner: group:rhdh
   type: website
+  # these are the steps which are rendered in the frontend with the form input
   parameters:
     - title: Provide some simple information
       required:
@@ -22,20 +23,25 @@ spec:
           title: Name
           type: string
           description: Unique name of the component
+          maxLength: 50
+          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
+          ui:help: Provide an unique name to identify the component
           ui:field: EntityNamePicker
+          ui:autofocus: true
         description:
           title: Description
           type: string
-          description: Help others understand what this website is for.
+          description: Help others understand what this website is for
+          ui:help: Short description of this new website
         owner:
           title: Owner
           type: string
           description: Owner of the component
           ui:field: EntityNamePicker
-          #ui:field: OwnerPicker
-          #ui:options:
-          #  allowedKinds:
-          #    - Group
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
     - title: Choose a location
       required:
         - repoUrl
@@ -44,13 +50,14 @@ spec:
           title: Repository Location
           type: string
           description: Base url of the GitLab server (not include protocol such as https:// or ssh://)
+          ui:help: Base url of the GitLab server (not include protocol such as https:// or ssh://)
           default: 'gitlab.com'
-          ui:field: EntityNamePicker
           #ui:field: RepoUrlPicker
           #ui:options:
           #  allowedHosts:
           #    - github.com
 
+  # here's the steps that are executed in series in the scaffolder backend
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -61,17 +68,19 @@ spec:
           name: ${{ parameters.component_id }}
           component_id: ${{ parameters.component_id }}
           description:  ${{ parameters.description }}
-          repo_url: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
-          owner: ${{ parameters.owner }}
+          repo_url: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.component_id }}
+          owner: ${{ parameters.owner | parseEntityRef | pick('name') }}
+
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab
       input:
         #allowedHosts: ['gitlab.com']
         description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner }}&repo=${{ parameters.component_id }}
+        repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.component_id }}
         repoVisibility: public
         defaultBranch: main
+
     - id: register
       name: Register
       action: catalog:register
@@ -79,6 +88,7 @@ spec:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
+  # some outputs which are saved along with the job for use in the frontend
   output:
     links:
       - title: Repository

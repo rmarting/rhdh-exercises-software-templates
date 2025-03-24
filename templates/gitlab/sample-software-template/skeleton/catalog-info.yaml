@@ -22,5 +22,5 @@ spec:
   owner: ${{ values.owner }}
   lifecycle: experimental
   system: sample-system
-  providesApis:
-    - ${{ values.name }}
+  #providesApis:
+  #  - ${{ values.name }}
