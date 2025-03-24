@@ -11,7 +11,7 @@ metadata:
     - rhdh-exercises
     - workshop
 spec:
-  owner: backstage/techdocs-core
+  owner: group:rhdh
   type: service
   # these are the steps which are rendered in the frontend with the form input
   parameters:
