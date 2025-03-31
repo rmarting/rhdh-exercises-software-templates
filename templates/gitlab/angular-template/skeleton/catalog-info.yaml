@@ -6,6 +6,7 @@ metadata:
   description: ${{ values.description | dump }}
   {%- endif %}
   annotations:
+    gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
   links:
     - url: https://workspaces.openshift.com/#https://${{ values.repo_url }}
