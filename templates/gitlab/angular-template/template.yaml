@@ -9,6 +9,8 @@ metadata:
     - angular
     - gitlab
     - rhdh-exercises
+  annotations:
+    backstage.io/template-version: 'v1.0.0'
 spec:
   owner: group:rhdh
   type: website
@@ -85,6 +87,10 @@ spec:
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
+
+    - id: create-provenance-annotation
+      name: Append the entityRef of this template to the entityRef
+      action: catalog:scaffolded-from
 
   # some outputs which are saved along with the job for use in the frontend
   output:
