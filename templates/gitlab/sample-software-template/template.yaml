@@ -76,7 +76,6 @@ spec:
       action: publish:gitlab
       input:
         #allowedHosts: ['gitlab.com']
-        description: ${{ parameters.description }}
         repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name')  }}&repo=${{ parameters.name }}
         repoVisibility: public
         defaultBranch: main
