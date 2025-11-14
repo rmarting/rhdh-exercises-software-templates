@@ -73,6 +73,10 @@ spec:
           owner: ${{ parameters.owner | parseEntityRef | pick('name') }}
           repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.name }}
 
+    - id: create-provenance-annotation
+      name: Append the entityRef of this template to the entityRef
+      action: catalog:scaffolded-from
+
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab
@@ -81,10 +85,6 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name')  }}&repo=${{ parameters.name }}
         repoVisibility: public
         defaultBranch: main
-
-    - id: create-provenance-annotation
-      name: Append the entityRef of this template to the entityRef
-      action: catalog:scaffolded-from
 
     #- id: create-version-annotation
     #  name: Create Template Version Annotation
