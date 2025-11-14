@@ -72,6 +72,10 @@ spec:
           repo_url: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.component_id }}
           owner: ${{ parameters.owner | parseEntityRef | pick('name') }}
 
+    - id: create-provenance-annotation
+      name: Append the entityRef of this template to the entityRef
+      action: catalog:scaffolded-from
+
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab
@@ -87,10 +91,6 @@ spec:
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
-
-    - id: create-provenance-annotation
-      name: Append the entityRef of this template to the entityRef
-      action: catalog:scaffolded-from
 
   # some outputs which are saved along with the job for use in the frontend
   output:
