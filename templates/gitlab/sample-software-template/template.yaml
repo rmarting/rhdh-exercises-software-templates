@@ -77,6 +77,12 @@ spec:
       name: Append the entityRef of this template to the entityRef
       action: catalog:scaffolded-from
 
+    #- id: create-version-annotation
+    #  name: Create Template Version Annotation
+    #  action: catalog:template:version
+    #  input:
+    #    templateVersion: ${{ parameters.version }}        
+
     - id: publish
       name: Publishing to the GitLab Repository
       action: publish:gitlab
@@ -85,12 +91,6 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name')  }}&repo=${{ parameters.name }}
         repoVisibility: public
         defaultBranch: main
-
-    #- id: create-version-annotation
-    #  name: Create Template Version Annotation
-    #  action: catalog:template:version
-    #  input:
-    #    templateVersion: ${{ parameters.version }}        
 
     - id: register
       name: Registering the Catalog Info
