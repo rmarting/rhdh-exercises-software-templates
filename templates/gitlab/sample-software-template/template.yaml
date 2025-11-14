@@ -82,13 +82,6 @@ spec:
         repoVisibility: public
         defaultBranch: main
 
-    - id: register
-      name: Registering the Catalog Info
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
-
     - id: create-provenance-annotation
       name: Append the entityRef of this template to the entityRef
       action: catalog:scaffolded-from
@@ -98,6 +91,13 @@ spec:
     #  action: catalog:template:version
     #  input:
     #    templateVersion: ${{ parameters.version }}        
+
+    - id: register
+      name: Registering the Catalog Info
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
 
   # some outputs which are saved along with the job for use in the frontend
   output:
