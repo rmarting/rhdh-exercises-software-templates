@@ -11,7 +11,7 @@ metadata:
     - rhdh-exercises
     - workshop
   annotations:
-    backstage.io/template-version: 'v1.2.1'
+    backstage.io/template-version: 'v1.2.2'
 spec:
   owner: group:rhdh
   type: service
