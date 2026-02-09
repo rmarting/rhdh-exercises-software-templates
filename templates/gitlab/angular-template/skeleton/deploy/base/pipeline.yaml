@@ -14,7 +14,7 @@ spec:
     - default: ${{ values.name }}
       name: APP_NAME
       type: string
-    - default: 'https://${{ values.git_repo_url }}'
+    - default: '${{ values.git_repo_url }}'
       name: GIT_REPO
       type: string
     - default: ''

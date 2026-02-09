@@ -13,7 +13,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://${{ values.git_repo_url }}
+    repoURL: ${{ values.git_repo_url }}
     targetRevision: main
     path: deploy/overlays/app
   destination:
