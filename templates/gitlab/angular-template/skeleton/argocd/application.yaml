@@ -13,7 +13,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.apps.cluster-mxvsb.mxvsb.sandbox3509.opentlc.com/team-a/test-angular-app.git
+    repoURL: https://${{ values.git_repo_url }}
     targetRevision: main
     path: deploy/overlays/app
   destination:
