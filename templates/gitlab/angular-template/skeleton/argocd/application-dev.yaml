@@ -1,0 +1,30 @@
+# ArgoCD Application for the dev environment.
+# Deploys the application to namespace ${{ values.name }}-dev.
+# Apply with: kubectl apply -f argocd/application-dev.yaml
+# Ensure the Git repo is registered in ArgoCD and the path deploy/overlays/dev exists.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${{ values.name }}-dev
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: ${{ values.name }}
+    environment: dev
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: ${{ values.repo_url }}
+    targetRevision: main
+    path: deploy/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ${{ values.name }}-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
