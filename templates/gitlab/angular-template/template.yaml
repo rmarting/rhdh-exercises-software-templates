@@ -70,6 +70,7 @@ spec:
           component_id: ${{ parameters.component_id }}
           description:  ${{ parameters.description }}
           repo_url: ${{ parameters.repoUrl }}?owner=${{ parameters.owner | parseEntityRef | pick('name') }}&repo=${{ parameters.component_id }}
+          git_repo_url: "https://${{ parameters.repoUrl }}/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}.git"
           owner: ${{ parameters.owner | parseEntityRef | pick('name') }}
 
     - id: create-provenance-annotation

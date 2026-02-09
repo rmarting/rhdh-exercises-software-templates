@@ -5,22 +5,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ${{ values.name }}-dev
-  namespace: argocd
+  name: ${{ values.name }}
+  namespace: openshift-gitops
   labels:
+    backstage.io/kubernetes-id: ${{ values.name }}
     app.kubernetes.io/name: ${{ values.name }}
-    environment: dev
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: ${{ values.repo_url }}
+    repoURL: https://${{ values.repo_url }}
+             https://gitlab.apps.cluster-mxvsb.mxvsb.sandbox3509.opentlc.com/team-a/test-angular-app.git
     targetRevision: main
-    path: deploy/overlays/dev
+    path: deploy/overlays/app
   destination:
     server: https://kubernetes.default.svc
-    namespace: ${{ values.name }}-dev
+    namespace: ${{ values.name }}
   syncPolicy:
     automated:
       prune: true

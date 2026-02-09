@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   generateName: ${{ values.name }}-pipeline-run-
-  namespace: ${{ values.name }}
   labels:
     app.kubernetes.io/instance: ${{ values.name }}
     app.kubernetes.io/name: ${{ values.name }}
@@ -12,13 +11,13 @@ metadata:
     tekton.dev/pipeline: ${{ values.name }}
     backstage.io/kubernetes-id: ${{ values.name }}
   annotations:
-    tekton.dev/gitURL: ${{ values.repo_url }}
+    tekton.dev/gitURL: ${{ values.git_repo_url }}
 spec:
   params:
     - name: APP_NAME
       value: ${{ values.name }}
     - name: GIT_REPO
-      value: 'https://${{ values.repo_url }}'
+      value: 'https://${{ values.git_repo_url }}'
     - name: GIT_REVISION
       value: ''
     - name: IMAGE_NAME

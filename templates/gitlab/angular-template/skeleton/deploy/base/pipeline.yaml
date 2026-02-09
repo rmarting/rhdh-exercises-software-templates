@@ -9,13 +9,12 @@ metadata:
     pipeline.openshift.io/type: kubernetes
     backstage.io/kubernetes-id: ${{ values.name }}
   name: ${{ values.name }}
-  namespace: ${{ values.name }}
 spec:
   params:
     - default: ${{ values.name }}
       name: APP_NAME
       type: string
-    - default: 'https://${{ values.repo_url }}'
+    - default: 'https://${{ values.git_repo_url }}'
       name: GIT_REPO
       type: string
     - default: ''

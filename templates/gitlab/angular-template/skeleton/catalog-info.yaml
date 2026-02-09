@@ -9,9 +9,8 @@ metadata:
     gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: ${{ values.name }}
-    backstage.io/kubernetes-namespace: ${{ values.name }}
     janus-idp.io/tekton: ${{ values.name }}
-    argocd/app-selector: ${{ values.name }}
+    argocd/app-name: ${{ values.name }}
   links:
     - url: https://workspaces.openshift.com/#https://${{ values.repo_url }}
       title: OpenShift Dev Spaces (VS Code)
