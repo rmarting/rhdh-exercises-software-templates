@@ -11,6 +11,7 @@ metadata:
     backstage.io/kubernetes-id: ${{ values.name }}
     janus-idp.io/tekton: ${{ values.name }}
     argocd/app-name: ${{ values.name }}
+    tekton.dev/cicd: "true"
   links:
     - url: https://workspaces.openshift.com/#https://${{ values.repo_url }}
       title: OpenShift Dev Spaces (VS Code)

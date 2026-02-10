@@ -10,7 +10,7 @@ metadata:
     - gitlab
     - rhdh-exercises
   annotations:
-    backstage.io/template-version: 'v1.0.1'
+    backstage.io/template-version: 'v1.0.2'
 spec:
   owner: group:rhdh
   type: website
@@ -105,6 +105,13 @@ spec:
       action: debug:wait
       input:
         seconds: 5
+
+    #- id: deploy-argocd-applications
+    #  name: Deploy ArgoCD application
+    #  action: run:shell
+    #  input:
+    #    command: |
+    #      kubectl apply -f ./argocd/        
 
     - id: create-argocd-resources
       name: Create the ArgoCD Resources
