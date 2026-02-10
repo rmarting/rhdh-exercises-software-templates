@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  generateName: ${{ values.name }}-pipeline-run-
+  name: ${{ values.name }}-pipeline-run
   labels:
     app.kubernetes.io/instance: ${{ values.name }}
     app.kubernetes.io/name: ${{ values.name }}
