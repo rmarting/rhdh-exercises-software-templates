@@ -17,7 +17,7 @@ spec:
     - name: APP_NAME
       value: ${{ values.name }}
     - name: GIT_REPO
-      value: 'https://${{ values.git_repo_url }}'
+      value: '${{ values.git_repo_url }}'
     - name: GIT_REVISION
       value: ''
     - name: IMAGE_NAME
@@ -32,5 +32,13 @@ spec:
     pipeline: 1h0m0s
   workspaces:
     - name: workspace
-      persistentVolumeClaim:
-        claimName: workspace-pvc
+      volumeClaimTemplate:
+        metadata:
+          creationTimestamp: null
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+          volumeMode: Filesystem

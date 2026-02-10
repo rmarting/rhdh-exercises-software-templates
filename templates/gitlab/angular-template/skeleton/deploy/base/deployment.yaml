@@ -17,6 +17,7 @@ spec:
     metadata:
       labels:
         app: ${{ values.name }}
+        deployment: ${{ values.name }}
         app.kubernetes.io/instance: ${{ values.name }}
         app.kubernetes.io/name: ${{ values.name }}
         backstage.io/kubernetes-id: ${{ values.name }}
@@ -24,28 +25,36 @@ spec:
       containers:
         - name: ${{ values.name }}
           image: image-registry.openshift-image-registry.svc:5000/${{ values.name }}/${{ values.name }}:latest
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "100m"
-            limits:
-              memory: "256Mi"
-              cpu: "500m"
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          readinessProbe:          
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 5
+          #resources:
+          #  requests:
+          #    memory: "128Mi"
+          #    cpu: "100m"
+          #  limits:
+          #    memory: "256Mi"
+          #    cpu: "500m"
+          #livenessProbe:
+          #  httpGet:
+          #    path: /
+          #    port: 8080
+          #  initialDelaySeconds: 30
+          #  periodSeconds: 10
+          #readinessProbe:          
+          #  httpGet:
+          #    path: /
+          #    port: 8080
+          #  initialDelaySeconds: 5
+          #  periodSeconds: 5
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 25%
       maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
