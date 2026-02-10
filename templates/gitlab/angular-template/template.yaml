@@ -58,11 +58,11 @@ spec:
           #ui:options:
           #  allowedHosts:
           #    - github.com
-        namespace:
-          title: ArgoCD Namespace
+        argocdInstance:
+          title: ArgoCD Instance
           type: string
-          description: Namespace to deploy the application in ArgoCD
-          ui:help: Namespace to deploy the application in ArgoCD
+          description: ArgoCD instance to declare the Application
+          ui:help: ArgoCD instance to declare the Application
           default: 'openshift-gitops'
 
   # here's the steps that are executed in series in the scaffolded backend
@@ -105,8 +105,8 @@ spec:
       action: argocd:create-resources
       input:
         appName: ${{ parameters.component_id }}
-        argoInstance: ${{ parameters.namespace }} 
-        namespace: ${{ parameters.namespace }}
+        argoInstance: ${{ parameters.argocdInstance }} 
+        namespace: ${{ parameters.argocdInstance }}
         repoUrl: ${{ steps.publish.output.remoteUrl }}
         path: argocd
         
