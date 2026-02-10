@@ -10,7 +10,7 @@ metadata:
     - gitlab
     - rhdh-exercises
   annotations:
-    backstage.io/template-version: 'v1.0.0'
+    backstage.io/template-version: 'v1.0.1'
 spec:
   owner: group:rhdh
   type: website
