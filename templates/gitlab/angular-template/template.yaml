@@ -113,7 +113,7 @@ spec:
         appName: ${{ parameters.component_id }}
         argoInstance: ${{ parameters.argocdInstance }} 
         namespace: ${{ parameters.argocdInstance }}
-        repoUrl: ${{ steps.publish.output.remoteUrl }}
+        repoUrl: https://${{ parameters.repoUrl }}/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}.git
         path: argocd
         
   # some outputs which are saved along with the job for use in the frontend
