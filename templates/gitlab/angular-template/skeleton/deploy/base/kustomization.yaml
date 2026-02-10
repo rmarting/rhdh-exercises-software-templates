@@ -6,7 +6,6 @@ resources:
   - service.yaml
   - route.yaml
   - pipeline.yaml
-  - pipelinerun.yaml
 
 labels:
   - pairs:
