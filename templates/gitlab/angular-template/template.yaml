@@ -100,6 +100,12 @@ spec:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
+    - id: wait-5s
+      name: Waiting for Entity and Repository
+      action: debug:wait
+      input:
+        seconds: 5
+
     - id: create-argocd-resources
       name: Create the ArgoCD Resources
       action: argocd:create-resources
