@@ -105,10 +105,11 @@ spec:
       action: argocd:create-resources
       input:
         appName: ${{ parameters.component_id }}
-        path: argocd
-        repoUrl: ${{ steps.publish.output.remoteUrl }}
+        argoInstance: ${{ parameters.namespace }} 
         namespace: ${{ parameters.namespace }}
-                  
+        repoUrl: ${{ steps.publish.output.remoteUrl }}
+        path: argocd
+        
   # some outputs which are saved along with the job for use in the frontend
   output:
     links:
