@@ -46,7 +46,7 @@ spec:
     - title: Choose a location
       required:
         - repoUrl
-        - namespace
+        - argocdInstance
       properties:
         repoUrl:
           title: Repository Location
