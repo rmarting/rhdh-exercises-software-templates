@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: angular-app-template-gitlab
-  title: Angular App Template for GitLab
-  description: Create a new CRA website project
+  name: angular-template-gitlab
+  title: Angular Template for GitLab
+  description: Create a new Angular website project
   tags:
     - recommended
     - angular
@@ -46,6 +46,7 @@ spec:
     - title: Choose a location
       required:
         - repoUrl
+        - namespace
       properties:
         repoUrl:
           title: Repository Location
@@ -57,8 +58,14 @@ spec:
           #ui:options:
           #  allowedHosts:
           #    - github.com
+        namespace:
+          title: ArgoCD Namespace
+          type: string
+          description: Namespace to deploy the application in ArgoCD
+          ui:help: Namespace to deploy the application in ArgoCD
+          default: 'openshift-gitops'
 
-  # here's the steps that are executed in series in the scaffolder backend
+  # here's the steps that are executed in series in the scaffolded backend
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -87,12 +94,21 @@ spec:
         defaultBranch: main
 
     - id: register
-      name: Register
+      name: Register Entity in Catalog
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
+    - id: create-argocd-resources
+      name: Create the ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ parameters.component_id }}
+        path: argocd
+        repoUrl: ${{ steps.publish.output.remoteUrl }}
+        namespace: ${{ parameters.namespace }}
+                  
   # some outputs which are saved along with the job for use in the frontend
   output:
     links:
