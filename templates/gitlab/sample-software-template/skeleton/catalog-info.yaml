@@ -6,6 +6,9 @@ metadata:
   description: |
     Backstage is an open-source developer portal that puts the developer experience first.
     ${{ values.description }}
+  annotations:
+    gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
+    backstage.io/techdocs-ref: dir:.
   tags:
     - rhdh-exercises
     - sample

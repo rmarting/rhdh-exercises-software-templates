@@ -9,9 +9,11 @@ metadata:
     gitlab.com/project-slug: ${{ values.owner }}/${{ values.name }}
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: ${{ values.name }}
-    janus-idp.io/tekton: ${{ values.name }}
     argocd/app-name: ${{ values.name }}
     tekton.dev/cicd: "true"
+  tags:
+    - rhdh-exercises
+    - sample
   links:
     - url: https://workspaces.openshift.com/#https://${{ values.repo_url }}
       title: OpenShift Dev Spaces (VS Code)
