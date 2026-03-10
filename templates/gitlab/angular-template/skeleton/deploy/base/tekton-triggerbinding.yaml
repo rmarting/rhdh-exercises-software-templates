@@ -1,0 +1,11 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: ${{ values.name }}-pipeline-triggerbinding
+spec:
+  params:
+  - name: git_url
+    value: $(body.repository.git_http_url)
+  - name: git_revision
+    value: $(body.project.default_branch) # $(body.after)

@@ -6,6 +6,11 @@ resources:
   - service.yaml
   - route.yaml
   - pipeline.yaml
+  - tekton-trigger.yaml
+  - tekton-triggerbinding.yaml
+  - tekton-triggertemplate.yaml
+  - tekton-eventlistener.yaml
+  - tekton-gitlab-webhook-secret.yaml
 
 labels:
   - pairs:
