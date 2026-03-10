@@ -2,7 +2,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: Trigger
 metadata:
-  name: gitlag-listener-trigger
+  name: gitlab-listener-trigger
 spec:
   interceptors:
     - ref:
